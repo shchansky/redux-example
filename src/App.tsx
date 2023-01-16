@@ -1,13 +1,26 @@
 import React from "react";
 import "./App.css";
 
+type todoItem = {
+  id: string;
+  text: string;
+  completed: boolean;
+};
+
 function App() {
-  const [todos, setTodos] = React.useState<string[]>([]);
+  const [todos, setTodos] = React.useState<todoItem[]>([]);
   const [text, setText] = React.useState<string>("");
 
   const handleAddTodo = React.useCallback(() => {
     if (text.trim().length) {
-      setTodos([...todos, text]);
+      setTodos([
+        ...todos,
+        {
+          id: new Date().toISOString(),
+          text,
+          completed: false,
+        },
+      ]);
       setText("");
     }
   }, [text, todos]);
@@ -26,11 +39,15 @@ function App() {
         <button onClick={handleAddTodo}>setTodos</button>
       </div>
       <hr />
-      <div>
-        {todos.map((el, index) => (
-          <div key={index}>{el}</div>
+      <ul>
+        {todos.map((el) => (
+          <li key={el.id}>
+            <input type="checkbox" />
+            <span>{el.text}</span>
+            <span style={{ color: "red" }}>&times;</span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
