@@ -69,9 +69,15 @@ function App() {
             <input
               type="checkbox"
               checked={todo.completed}
-              onClick={() => handleToggleTodoCompleet(todo.id)}
+              onChange={() => handleToggleTodoCompleet(todo.id)}
             />
-            <span>{todo.text}</span>
+            <span
+              style={{
+                textDecoration: todo.completed ? "line-through" : "none",
+              }}
+            >
+              {todo.text}
+            </span>
             <button
               style={{ color: "red", cursor: "pointer" }}
               onClick={() => handleRemoveTodo(todo.id)}
