@@ -25,6 +25,15 @@ function App() {
     }
   }, [text, todos]);
 
+  const handleDeleteTodo = React.useCallback(
+    (id: string) => () => {
+      const filterTodos = todos.filter((el) => el.id !== id);
+
+      setTodos(filterTodos);
+    },
+    [todos]
+  );
+
   const handleSetText = React.useCallback(
     (ev: React.ChangeEvent<HTMLInputElement>) => {
       setText(ev.target.value);
@@ -41,10 +50,18 @@ function App() {
       <hr />
       <ul>
         {todos.map((el) => (
-          <li key={el.id}>
+          <li
+            key={el.id}
+            style={{ display: "flex", gap: "8px", alignItems: "center" }}
+          >
             <input type="checkbox" />
             <span>{el.text}</span>
-            <span style={{ color: "red" }}>&times;</span>
+            <button
+              style={{ color: "red", cursor: "pointer" }}
+              onClick={handleDeleteTodo(el.id)}
+            >
+              &times;
+            </button>
           </li>
         ))}
       </ul>
