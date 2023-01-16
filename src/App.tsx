@@ -25,11 +25,23 @@ function App() {
     }
   }, [text, todos]);
 
-  const handleDeleteTodo = React.useCallback(
-    (id: string) => () => {
+  const handleRemoveTodo = React.useCallback(
+    (id: string) => {
       const filterTodos = todos.filter((el) => el.id !== id);
 
       setTodos(filterTodos);
+    },
+    [todos]
+  );
+
+  const handleToggleTodoCompleet = React.useCallback(
+    (id: string) => {
+      const filterTodos = todos.map((el) => ({
+        ...el,
+        completed: id === el.id ? !el.completed : el.completed,
+      }));
+
+      setTodos([...filterTodos]);
     },
     [todos]
   );
@@ -49,16 +61,20 @@ function App() {
       </div>
       <hr />
       <ul>
-        {todos.map((el) => (
+        {todos.map((todo) => (
           <li
-            key={el.id}
+            key={todo.id}
             style={{ display: "flex", gap: "8px", alignItems: "center" }}
           >
-            <input type="checkbox" />
-            <span>{el.text}</span>
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onClick={() => handleToggleTodoCompleet(todo.id)}
+            />
+            <span>{todo.text}</span>
             <button
               style={{ color: "red", cursor: "pointer" }}
-              onClick={handleDeleteTodo(el.id)}
+              onClick={() => handleRemoveTodo(todo.id)}
             >
               &times;
             </button>
