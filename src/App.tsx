@@ -1,5 +1,5 @@
 import React from "react";
-import { TodoList } from "./components";
+import { TodoList, InputField } from "./components";
 import "./App.css";
 
 type todoItem = {
@@ -56,18 +56,17 @@ function App() {
 
   return (
     <div>
-      <div>
-        <input type="text" value={text} onChange={handleSetText} />
-        <button onClick={handleAddTodo}>setTodos</button>
-      </div>
+      <InputField
+        text={text}
+        handleSubmit={handleAddTodo}
+        handleInput={handleSetText}
+      />
       <hr />
-      {
-        <TodoList
-          todos={todos}
-          handleToggleTodoCompleet={handleToggleTodoCompleet}
-          handleRemoveTodo={handleRemoveTodo}
-        />
-      }
+      <TodoList
+        todos={todos}
+        handleToggleTodoCompleet={handleToggleTodoCompleet}
+        handleRemoveTodo={handleRemoveTodo}
+      />
     </div>
   );
 }

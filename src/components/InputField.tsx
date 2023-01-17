@@ -1,7 +1,17 @@
-import React from 'react'
+import React from "react";
 
-export const InputField = () => {
+type Props = {
+  text: string;
+  handleSubmit: () => void;
+  handleInput: (ev: React.ChangeEvent<HTMLInputElement>) => void
+};
+
+export const InputField = (props: Props) => {
+  const { text, handleSubmit, handleInput } = props;
   return (
-    <div>InputField</div>
-  )
-}
+    <label>
+      <input type="text" value={text} onChange={handleInput} />
+      <button onClick={handleSubmit}>Add Todo</button>
+    </label>
+  );
+};
