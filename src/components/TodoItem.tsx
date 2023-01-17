@@ -1,12 +1,12 @@
 import React from "react";
 
-type TodoItem = {
+type TodoItemType = {
   id: string;
   text: string;
   completed: boolean;
 };
 
-type Props = TodoItem & {
+type Props = TodoItemType & {
   handleToggleTodoCompleet: (id: string) => void;
   handleRemoveTodo: (id: string) => void;
 };
