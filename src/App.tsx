@@ -1,4 +1,5 @@
 import React from "react";
+import { TodoList } from "./components";
 import "./App.css";
 
 type todoItem = {
@@ -60,33 +61,13 @@ function App() {
         <button onClick={handleAddTodo}>setTodos</button>
       </div>
       <hr />
-      <ul>
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            style={{ display: "flex", gap: "8px", alignItems: "center" }}
-          >
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => handleToggleTodoCompleet(todo.id)}
-            />
-            <span
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none",
-              }}
-            >
-              {todo.text}
-            </span>
-            <button
-              style={{ color: "red", cursor: "pointer" }}
-              onClick={() => handleRemoveTodo(todo.id)}
-            >
-              &times;
-            </button>
-          </li>
-        ))}
-      </ul>
+      {
+        <TodoList
+          todos={todos}
+          handleToggleTodoCompleet={handleToggleTodoCompleet}
+          handleRemoveTodo={handleRemoveTodo}
+        />
+      }
     </div>
   );
 }
