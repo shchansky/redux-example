@@ -1,15 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type InitialState = {
-  todos: string[];
+type TodoItem = {
+  id: string;
+  text: string;
+  completed: boolean;
 };
 
-const initialState: InitialState = {
-  todos: [],
-};
+type InitialState = { todos: TodoItem[] };
+
+const initialState: InitialState = { todos: [] };
 
 export const todoSlice = createSlice({
   name: "todos",
+
   initialState,
-  reducers: {},
+
+  reducers: {
+    addTodo(state, action) {
+      state.todos.push({
+        id: new Date().toISOString(),
+        text: action.payload.text,
+        completed: false,
+      });
+    },
+
+    reboveTodo(state, action) {},
+
+    toggleTodo(state, action) {},
+  },
 });
