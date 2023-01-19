@@ -10,13 +10,13 @@ type InitialState = { todos: TodoItem[] };
 
 const initialState: InitialState = { todos: [] };
 
-export const todoSlice = createSlice({
+const todoSlice = createSlice({
   name: "todos",
 
   initialState,
 
   reducers: {
-    addTodo(state, action) {
+    handleAddTodo(state, action) {
       state.todos.push({
         id: new Date().toISOString(),
         text: action.payload.text,
@@ -24,8 +24,13 @@ export const todoSlice = createSlice({
       });
     },
 
-    reboveTodo(state, action) {},
+    handleRemoveTodo(state, action) {},
 
-    toggleTodo(state, action) {},
+    handleToggleTodoCompleet(state, action) {},
   },
 });
+
+export const { handleAddTodo, handleRemoveTodo, handleToggleTodoCompleet } =
+  todoSlice.actions;
+
+export const todoReducer = todoSlice.reducer;
