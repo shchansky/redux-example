@@ -1,5 +1,11 @@
 import React from "react";
 import { TodoList, InputField } from "./components";
+import { useDispatch } from "react-redux";
+import {
+  handleAddTodo,
+  handleRemoveTodo,
+  handleToggleTodoCompleet,
+} from "./store/todo-slice";
 import "./App.css";
 
 type todoItem = {
@@ -9,43 +15,15 @@ type todoItem = {
 };
 
 function App() {
-  const [todos, setTodos] = React.useState<todoItem[]>([]);
   const [text, setText] = React.useState<string>("");
 
-  const handleAddTodo = React.useCallback(() => {
-    if (text.trim().length) {
-      setTodos([
-        ...todos,
-        {
-          id: new Date().toISOString(),
-          text,
-          completed: false,
-        },
-      ]);
-      setText("");
-    }
-  }, [text, todos]);
+  const dispatch = useDispatch();
 
-  const handleRemoveTodo = React.useCallback(
-    (id: string) => {
-      const filterTodos = todos.filter((el) => el.id !== id);
+  const addtask = () => dispatch(handleAddTodo(text));
 
-      setTodos(filterTodos);
-    },
-    [todos]
-  );
+  const handleRemoveTodo = React.useCallback((id: string) => {}, []);
 
-  const handleToggleTodoCompleet = React.useCallback(
-    (id: string) => {
-      const filterTodos = todos.map((el) => ({
-        ...el,
-        completed: id === el.id ? !el.completed : el.completed,
-      }));
-
-      setTodos([...filterTodos]);
-    },
-    [todos]
-  );
+  const handleToggleTodoCompleet = React.useCallback((id: string) => {}, []);
 
   const handleSetText = React.useCallback(
     (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,19 +34,21 @@ function App() {
 
   return (
     <div>
-      <InputField
-        text={text}
-        handleSubmit={handleAddTodo}
-        handleInput={handleSetText}
-      />
+      <div>
+        <InputField
+          text={text}
+          handleSubmit={addtask}
+          handleInput={handleSetText}
+        />
+      
+      </div>
+
       <hr />
-      <TodoList
-        todos={todos}
-        handleToggleTodoCompleet={handleToggleTodoCompleet}
-        handleRemoveTodo={handleRemoveTodo}
-      />
+      <TodoList />
     </div>
   );
+
+  // return <div>zsdsdcsdc</div>;
 }
 
 export default App;
