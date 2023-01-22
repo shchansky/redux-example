@@ -1,54 +1,39 @@
 import React from "react";
 import { TodoList, InputField } from "./components";
-import { useDispatch } from "react-redux";
-import {
-  handleAddTodo,
-  handleRemoveTodo,
-  handleToggleTodoCompleet,
-} from "./store/todo-slice";
+import { useAppDispatch } from "./hooks";
+import { handleAddTodo } from "./store/todo-slice";
 import "./App.css";
-
-type todoItem = {
-  id: string;
-  text: string;
-  completed: boolean;
-};
 
 function App() {
   const [text, setText] = React.useState<string>("");
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const addtask = () => dispatch(handleAddTodo(text));
+  const addtask = () => {
+    if (text.trim().length) {
+      dispatch(handleAddTodo(text));
+      setText("");
+    }
+  };
 
-  const handleRemoveTodo = React.useCallback((id: string) => {}, []);
-
-  const handleToggleTodoCompleet = React.useCallback((id: string) => {}, []);
-
-  const handleSetText = React.useCallback(
-    (ev: React.ChangeEvent<HTMLInputElement>) => {
-      setText(ev.target.value);
-    },
-    []
-  );
+  const handleSetText = React.useCallback((value: string) => {
+    setText(value);
+  }, []);
 
   return (
     <div>
       <div>
         <InputField
-          text={text}
+          value={text}
           handleSubmit={addtask}
-          handleInput={handleSetText}
+          setValue={handleSetText}
         />
-      
       </div>
 
       <hr />
       <TodoList />
     </div>
   );
-
-  // return <div>zsdsdcsdc</div>;
 }
 
 export default App;

@@ -1,16 +1,24 @@
 import React from "react";
 
 type Props = {
-  text: string;
+  value: string;
+  setValue: (value:string) => void;
   handleSubmit: () => void;
-  handleInput: (ev: React.ChangeEvent<HTMLInputElement>) => void
+
 };
 
 export const InputField = (props: Props) => {
-  const { text, handleSubmit, handleInput } = props;
+  const { value, handleSubmit, setValue } = props;
   return (
     <label>
-      <input type="text" value={text} onChange={handleInput} />
+      <input
+        type="text"
+        value={value}
+        onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
+          setValue(ev.target.value)
+        }
+        placeholder="new todo"
+      />
       <button onClick={handleSubmit}>Add Todo</button>
     </label>
   );
