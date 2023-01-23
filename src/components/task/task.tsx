@@ -4,15 +4,13 @@ import {
   handleRemoveTodo,
 } from "../../store/todo-slice";
 
-type TodoItemType = {
+type Props = {
   id: string;
   text: string;
   completed: boolean;
 };
 
-type Props = TodoItemType;
-
-export const Task: React.FC<Props> = (props: Props) => {
+export const Task: React.FC<Props> = (props) => {
   const { id, text, completed } = props;
 
   const dispatch = useAppDispatch();
