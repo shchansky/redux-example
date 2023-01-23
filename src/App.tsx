@@ -29,7 +29,6 @@ function App() {
           setValue={handleSetText}
         />
       </div>
-
       <hr />
       <TodoList />
     </div>
