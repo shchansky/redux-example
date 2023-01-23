@@ -1,8 +1,8 @@
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch } from "../../hooks";
 import {
   handleToggleTodoCompleet,
   handleRemoveTodo,
-} from "../store/todo-slice";
+} from "../../store/todo-slice";
 
 type TodoItemType = {
   id: string;
@@ -12,7 +12,7 @@ type TodoItemType = {
 
 type Props = TodoItemType;
 
-const TodoItem: React.FC<Props> = (props: Props) => {
+export const TodoItem: React.FC<Props> = (props: Props) => {
   const { id, text, completed } = props;
 
   const dispatch = useAppDispatch();
@@ -34,5 +34,3 @@ const TodoItem: React.FC<Props> = (props: Props) => {
     </li>
   );
 };
-
-export default TodoItem;

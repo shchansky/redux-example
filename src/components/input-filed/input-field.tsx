@@ -2,9 +2,8 @@ import React from "react";
 
 type Props = {
   value: string;
-  setValue: (value:string) => void;
+  setValue: (value: string) => void;
   handleSubmit: () => void;
-
 };
 
 export const InputField = (props: Props) => {
