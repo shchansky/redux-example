@@ -1,7 +1,7 @@
 import React from "react";
 import { TaskList, InputField } from "./components";
 import { useAppDispatch } from "./hooks";
-import { handleAddTodo } from "./store/task-list-slice";
+import { addTodo } from "./store/task-list-slice";
 
 function App() {
   const [text, setText] = React.useState<string>("");
@@ -10,7 +10,7 @@ function App() {
 
   const addtask = () => {
     if (text.trim().length) {
-      dispatch(handleAddTodo(text));
+      dispatch(addTodo(text));
       setText("");
     }
   };

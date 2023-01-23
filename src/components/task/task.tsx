@@ -1,8 +1,5 @@
 import { useAppDispatch } from "../../hooks";
-import {
-  handleToggleTodoCompleet,
-  handleRemoveTodo,
-} from "../../store/task-list-slice";
+import { toggleTodoCompleet, removeTodo } from "../../store/task-list-slice";
 
 type Props = {
   id: string;
@@ -20,12 +17,12 @@ export const Task: React.FC<Props> = (props) => {
       <input
         type="checkbox"
         checked={completed}
-        onChange={() => dispatch(handleToggleTodoCompleet(id))}
+        onChange={() => dispatch(toggleTodoCompleet(id))}
       />
       <span>{text}</span>
       <span
         style={{ cursor: "pointer", color: "red" }}
-        onClick={() => dispatch(handleRemoveTodo(id))}
+        onClick={() => dispatch(removeTodo(id))}
       >
         &times;
       </span>

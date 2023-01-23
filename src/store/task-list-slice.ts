@@ -25,7 +25,7 @@ export const taskListSlice = createSlice({
   initialState,
 
   reducers: {
-    handleAddTodo(state, action: PayloadAction<string>) {
+    addTodo(state, action: PayloadAction<string>) {
       console.log("state", state);
       console.log("action", action);
 
@@ -36,11 +36,11 @@ export const taskListSlice = createSlice({
       });
     },
 
-    handleRemoveTodo(state, action: PayloadAction<string>) {
+    removeTodo(state, action: PayloadAction<string>) {
       state.list = state.list.filter((el) => el.id !== action.payload);
     },
 
-    handleToggleTodoCompleet(state, action: PayloadAction<string>) {
+    toggleTodoCompleet(state, action: PayloadAction<string>) {
       const toggleTodo = state.list.find((todo) => todo.id === action.payload);
 
       if (toggleTodo) {
@@ -50,7 +50,7 @@ export const taskListSlice = createSlice({
   },
 });
 
-export const { handleAddTodo, handleRemoveTodo, handleToggleTodoCompleet } =
+export const { addTodo, removeTodo, toggleTodoCompleet } =
   taskListSlice.actions;
 
 export default taskListSlice.reducer;
