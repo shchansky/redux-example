@@ -1,5 +1,5 @@
 import React from "react";
-import { TodoList, InputField } from "./components";
+import { TaskList, InputField } from "./components";
 import { useAppDispatch } from "./hooks";
 import { handleAddTodo } from "./store/todo-slice";
 
@@ -29,7 +29,7 @@ function App() {
         />
       </div>
       <hr />
-      <TodoList />
+      <TaskList />
     </div>
   );
 }

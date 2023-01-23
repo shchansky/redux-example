@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-type TodoItem = {
+type Task = {
   id: string;
   text: string;
   completed: boolean;
 };
 
-export type InitialState = { list: TodoItem[] };
+export type InitialState = { list: Task[] };
 
 const initialState: InitialState = {
   list: [

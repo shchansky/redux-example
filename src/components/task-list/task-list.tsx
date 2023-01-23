@@ -1,13 +1,13 @@
 import { useAppSelector } from "../../hooks";
-import { TodoItem } from "../task/task";
+import { Task } from "../task/task";
 
-export const TodoList = () => {
+export const TaskList = () => {
   const todos = useAppSelector((state) => state.tasks.list);
 
   return (
     <ul>
       {todos.map((todo) => (
-        <TodoItem key={todo.id} {...todo} />
+        <Task key={todo.id} {...todo} />
       ))}
     </ul>
   );

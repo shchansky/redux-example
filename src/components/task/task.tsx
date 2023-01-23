@@ -12,7 +12,7 @@ type TodoItemType = {
 
 type Props = TodoItemType;
 
-export const TodoItem: React.FC<Props> = (props: Props) => {
+export const Task: React.FC<Props> = (props: Props) => {
   const { id, text, completed } = props;
 
   const dispatch = useAppDispatch();
