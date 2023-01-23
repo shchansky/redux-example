@@ -1,5 +1,5 @@
-import { useAppDispatch } from "../../hooks";
-import { toggleTodoCompleet, removeTodo } from "../../store/task-list-slice";
+import { useAppDispatch } from "hooks";
+import { toggleTodoCompleet, removeTodo } from "store/task-list-slice";
 
 type Props = {
   id: string;
