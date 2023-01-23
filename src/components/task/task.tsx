@@ -2,7 +2,7 @@ import { useAppDispatch } from "../../hooks";
 import {
   handleToggleTodoCompleet,
   handleRemoveTodo,
-} from "../../store/todo-slice";
+} from "../../store/task-list-slice";
 
 type Props = {
   id: string;

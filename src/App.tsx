@@ -1,7 +1,7 @@
 import React from "react";
 import { TaskList, InputField } from "./components";
 import { useAppDispatch } from "./hooks";
-import { handleAddTodo } from "./store/todo-slice";
+import { handleAddTodo } from "./store/task-list-slice";
 
 function App() {
   const [text, setText] = React.useState<string>("");

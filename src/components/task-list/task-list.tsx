@@ -2,7 +2,7 @@ import { useAppSelector } from "../../hooks";
 import { Task } from "../task/task";
 
 export const TaskList = () => {
-  const todos = useAppSelector((state) => state.tasks.list);
+  const todos = useAppSelector((state) => state.taskList.list);
 
   return (
     <ul>
