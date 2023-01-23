@@ -18,14 +18,19 @@ const TodoItem: React.FC<Props> = (props: Props) => {
   const dispatch = useAppDispatch();
 
   return (
-    <li>
+    <li style={{ display: "flex", gap: "4px", alignItems: "center" }}>
       <input
         type="checkbox"
         checked={completed}
         onChange={() => dispatch(handleToggleTodoCompleet(id))}
       />
       <span>{text}</span>
-      <span onClick={() => dispatch(handleRemoveTodo(id))}>&times;</span>
+      <span
+        style={{ cursor: "pointer", color: "red" }}
+        onClick={() => dispatch(handleRemoveTodo(id))}
+      >
+        &times;
+      </span>
     </li>
   );
 };

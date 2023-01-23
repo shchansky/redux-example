@@ -2,7 +2,6 @@ import React from "react";
 import { TodoList, InputField } from "./components";
 import { useAppDispatch } from "./hooks";
 import { handleAddTodo } from "./store/todo-slice";
-import "./App.css";
 
 function App() {
   const [text, setText] = React.useState<string>("");
