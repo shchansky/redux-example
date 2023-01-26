@@ -3,7 +3,7 @@ import React from 'react'
 import { TaskList } from './task-list';
 import { InputField } from './input-filed';
 import { useAppDispatch } from "hooks";
-import { addTodo } from "store/task-list-slice";
+import { addTodo } from "store/sync-version-slice";
 
 export const SyncVersion = () => {
     const [text, setText] = React.useState<string>("");

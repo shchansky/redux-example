@@ -19,7 +19,7 @@ const initialState: InitialState = {
   ],
 };
 
-export const taskListSlice = createSlice({
+export const syncVersionSlice = createSlice({
   name: "taskList",
 
   initialState,
@@ -51,6 +51,6 @@ export const taskListSlice = createSlice({
 });
 
 export const { addTodo, removeTodo, toggleTodoCompleet } =
-  taskListSlice.actions;
+  syncVersionSlice.actions;
 
-export default taskListSlice.reducer;
+export default syncVersionSlice.reducer;
