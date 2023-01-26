@@ -20,7 +20,7 @@ const initialState: InitialState = {
 };
 
 export const syncVersionSlice = createSlice({
-  name: "taskList",
+  name: "syncVersion",
 
   initialState,
 
