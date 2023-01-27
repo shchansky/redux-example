@@ -21,10 +21,7 @@ export const Task: React.FC<Props> = (props) => {
 
   return (
     <li style={{ display: "flex", gap: "4px", alignItems: "center" }}>
-      <input
-        type="checkbox"
-        checked={completed}
-      />
+      <input type="checkbox" checked={completed} />
       <span>{title}</span>
       <span
         style={{ cursor: "pointer", color: "red" }}
