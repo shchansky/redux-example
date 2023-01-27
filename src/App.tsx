@@ -1,12 +1,11 @@
 import React from "react";
-import { SyncVersion } from "./sync-version";
-import { AsyncVersion } from "./async-version";
+import * as Features from "./features";
 function App() {
   return (
     <>
-      <SyncVersion /> <hr />
+      <Features.SyncVersion /> <hr />
       <h3>Async version</h3>
-      <AsyncVersion />
+      <Features.AsyncVersion />
     </>
   );
 }
