@@ -1,4 +1,4 @@
-import { useAppDispatch } from "hooks";
+import { useAppDispatch } from "store/hooks";
 import { toggleTodoCompleet, removeTodo } from "store/sync-version-slice";
 
 type Props = {

@@ -2,7 +2,7 @@ import React from "react";
 
 import { TaskList } from "./task-list";
 import { InputField } from "./input-filed";
-import { useAppDispatch, useAppSelector } from "hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { fetchTodos, addNewTodo } from "store/async-version-slice";
 
 export const AsyncVersion = () => {

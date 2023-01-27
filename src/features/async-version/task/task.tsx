@@ -1,4 +1,4 @@
-import { useAppDispatch } from "hooks";
+import { useAppDispatch } from "store/hooks";
 import {
   deleteTodo,
 } from "store/async-version-slice";

@@ -13,3 +13,4 @@ export default store;
 
 export type RootSate = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export * as hooks from "./hooks"
