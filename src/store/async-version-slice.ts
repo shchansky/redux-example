@@ -18,8 +18,11 @@ export type InitialState = {
 };
 
 export const fetchTodos = createAsyncThunk<
+  /** Returned (результат выполнения промиса))*/
   Task[],
+  /** ThunkArg (аргумент асинхронной функции) */
   undefined,
+  /** ThunkApiConfig (строка для обработки ошибок) */
   { rejectValue: string }
 >("todos/fetchTodos", async function (_, { rejectWithValue }) {
   const response = await fetch(
@@ -152,11 +155,8 @@ const initialState: InitialState = {
 //   },
 // });
 
-
-
-
 const asyncVersionSlice = createSlice({
-  name: 'todos',
+  name: "todos",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -176,39 +176,32 @@ const asyncVersionSlice = createSlice({
         state.list.push(action.payload);
       })
       .addCase(toggleStatus.fulfilled, (state, action) => {
-        const toggledTodo = state.list.find(todo => todo.id === action.payload.id);
+        const toggledTodo = state.list.find(
+          (todo) => todo.id === action.payload.id
+        );
         if (toggledTodo) {
           toggledTodo.completed = !toggledTodo.completed;
         }
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
-        state.list = state.list.filter(todo => todo.id !== action.payload);
+        state.list = state.list.filter((todo) => todo.id !== action.payload);
       })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
         state.loading = false;
       });
-  }
+  },
 });
-
-
-
-
-
-
-
-
 
 // export const { addTodo, removeTodo, toggleTodoCompleet } =
 //   asyncVersionSlice.actions;
 
 // export default asyncVersionSlice.reducer;
 
-
 // export const { addTodo, toggleComplete, removeTodo } = todoSlice.actions;
 
 export default asyncVersionSlice.reducer;
 
 function isError(action: AnyAction) {
-  return action.type.endsWith('rejected');
+  return action.type.endsWith("rejected");
 }
