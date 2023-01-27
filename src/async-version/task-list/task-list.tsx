@@ -3,7 +3,8 @@ import { Task } from "../task/task";
 import { useSelector } from "react-redux";
 
 export const TaskList = () => {
-  const todos = useAppSelector((state) => state.syncVersion.list);
+  const todos = useAppSelector((state) => state.asyncVersion.list);
+  // const todos = useSelector((state) => state.asyncVersion);
 
   return (
     <ul>
