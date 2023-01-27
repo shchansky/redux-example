@@ -1,9 +1,6 @@
 import { useAppDispatch } from "hooks";
 import {
-  fetchTodos,
-  addNewTodo,
   deleteTodo,
-  toggleStatus,
 } from "store/async-version-slice";
 
 type Props = {
