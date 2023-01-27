@@ -1,14 +1,21 @@
 import { useAppDispatch } from "hooks";
-import { toggleTodoCompleet, removeTodo } from "store/sync-version-slice";
+import {
+  fetchTodos,
+  addNewTodo,
+  deleteTodo,
+  toggleStatus,
+} from "store/async-version-slice";
 
 type Props = {
   id: string;
-  text: string;
+  title: string;
   completed: boolean;
 };
 
 export const Task: React.FC<Props> = (props) => {
-  const { id, text, completed } = props;
+  const { id, title, completed } = props;
+
+  console.log(title);
 
   const dispatch = useAppDispatch();
 
@@ -17,12 +24,11 @@ export const Task: React.FC<Props> = (props) => {
       <input
         type="checkbox"
         checked={completed}
-        onChange={() => dispatch(toggleTodoCompleet(id))}
       />
-      <span>{text}</span>
+      <span>{title}</span>
       <span
         style={{ cursor: "pointer", color: "red" }}
-        onClick={() => dispatch(removeTodo(id))}
+        onClick={() => dispatch(deleteTodo(id))}
       >
         &times;
       </span>

@@ -7,7 +7,7 @@ import {
 
 type Task = {
   id: string;
-  text: string;
+  title: string;
   completed: boolean;
 };
 
@@ -22,7 +22,7 @@ export const fetchTodos = createAsyncThunk<
   Task[],
   /** ThunkArg (аргумент асинхронной функции) */
   undefined,
-  /** ThunkApiConfig (строка для обработки ошибок) */
+  /** ThunkApiConfig (строка с сообщением об ошибке) */
   { rejectValue: string }
 >("todos/fetchTodos", async function (_, { rejectWithValue }) {
   const response = await fetch(
@@ -39,8 +39,11 @@ export const fetchTodos = createAsyncThunk<
 });
 
 export const addNewTodo = createAsyncThunk<
+  /** Returned (результат выполнения промиса))*/
   Task,
+  /** ThunkArg (аргумент асинхронной функции) */
   string,
+  /** ThunkApiConfig (строка с сообщением об ошибке) */
   { rejectValue: string }
 >("todos/addNewTodo", async function (text, { rejectWithValue }) {
   const todo = {
@@ -65,8 +68,12 @@ export const addNewTodo = createAsyncThunk<
 });
 
 export const toggleStatus = createAsyncThunk<
+  /** Returned (результат выполнения промиса))*/
   Task,
+  /** ThunkArg (аргумент асинхронной функции) */
   string,
+  /** ThunkApiConfig (описание строки с сообщением об ошибке и state-а) */
+
   { rejectValue: string; state: { todos: InitialState } }
 >("todos/toggleStatus", async function (id, { rejectWithValue, getState }) {
   const todo = getState().todos.list.find((todo) => todo.id === id);
@@ -124,37 +131,6 @@ const initialState: InitialState = {
 
 ////////////////////////////////
 
-// export const asyncVersionSlice = createSlice({
-//   name: "syncVersion",
-
-//   initialState,
-
-//   reducers: {
-//     addTodo(state, action: PayloadAction<string>) {
-//       console.log("state", state);
-//       console.log("action", action);
-
-//       state.list.push({
-//         id: new Date().toISOString(),
-//         text: action.payload,
-//         completed: false,
-//       });
-//     },
-
-//     removeTodo(state, action: PayloadAction<string>) {
-//       state.list = state.list.filter((el) => el.id !== action.payload);
-//     },
-
-//     toggleTodoCompleet(state, action: PayloadAction<string>) {
-//       const toggleTodo = state.list.find((todo) => todo.id === action.payload);
-
-//       if (toggleTodo) {
-//         toggleTodo.completed = !toggleTodo.completed;
-//       }
-//     },
-//   },
-// });
-
 const asyncVersionSlice = createSlice({
   name: "todos",
   initialState,
@@ -198,10 +174,11 @@ const asyncVersionSlice = createSlice({
 
 // export default asyncVersionSlice.reducer;
 
-// export const { addTodo, toggleComplete, removeTodo } = todoSlice.actions;
+// export const { addTodo, toggleComplete, removeTodo } = asyncVersionSlice.actions;
 
 export default asyncVersionSlice.reducer;
 
+/** Ф-ия предикат */
 function isError(action: AnyAction) {
   return action.type.endsWith("rejected");
 }

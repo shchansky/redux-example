@@ -2,17 +2,19 @@ import React from "react";
 
 import { TaskList } from "./task-list";
 import { InputField } from "./input-filed";
-import { useAppDispatch } from "hooks";
-import { fetchTodos } from "store/async-version-slice";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { fetchTodos, addNewTodo } from "store/async-version-slice";
 
-export const SyncVersion = () => {
+export const AsyncVersion = () => {
   const [text, setText] = React.useState<string>("");
+
+  const { loading, error } = useAppSelector((state) => state.asyncVersion);
 
   const dispatch = useAppDispatch();
 
   const addtask = () => {
     if (text.trim().length) {
-      // dispatch(addTodo(text));
+      dispatch(addNewTodo(text));
       setText("");
     }
   };
@@ -34,7 +36,9 @@ export const SyncVersion = () => {
           setValue={handleSetText}
         />
       </div>
-      <hr />
+
+      {loading && <h2>Loading...</h2>}
+      {error && <h2>An error occured: {error}</h2>}
       <TaskList />
     </div>
   );
