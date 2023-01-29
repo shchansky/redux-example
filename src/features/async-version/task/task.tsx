@@ -12,8 +12,6 @@ type Props = {
 export const Task: React.FC<Props> = (props) => {
   const { id, title, completed } = props;
 
-  console.log(title);
-
   const dispatch = useAppDispatch();
 
   return (
