@@ -121,15 +121,11 @@ export const deleteTodo = createAsyncThunk<
   return id;
 });
 
-////////////////////////////
-
 const initialState: InitialState = {
   list: [],
   loading: false,
   error: null,
 };
-
-////////////////////////////////
 
 const asyncVersionSlice = createSlice({
   name: "todos",
