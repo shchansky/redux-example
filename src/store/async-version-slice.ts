@@ -64,8 +64,6 @@ export const addNewTodo = createAsyncThunk<
     return rejectWithValue("Can't add task. Server error.");
   }
 
-  console.log(await response.json());
-
   return (await response.json()) as Task;
 });
 
